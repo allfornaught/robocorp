@@ -13,3 +13,4 @@ dependencies:
     - robocorp==3.0.0             # https://pypi.org/project/robocorp
     - robocorp-browser==2.3.5     # https://pypi.org/project/robocorp-browser
     - reportlab==4.4.3
+    - rpaframework-assistant==5.0.0

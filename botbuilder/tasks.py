@@ -5,6 +5,7 @@ from RPA.HTTP import HTTP
 from RPA.Tables import Tables
 from RPA.PDF import PDF
 from RPA.Archive import Archive
+from RPA.Assistant import Assistant
 
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
@@ -40,8 +41,15 @@ def order_bots_from_rsb():
     archive_receipts()
 
 def open_order_website():
-    """Go to the order site"""
-    browser.goto("https://robotsparebinindustries.com/#/robot-order")
+    """Go to the order site
+    Update bonus: prompts the user for the url: https://robotsparebinindustries.com/#/robot-order"""
+    assist = Assistant()
+    assist.add_heading("Get URL input from User")
+    assist.add_text_input("input_url", placeholder="Enter the URL here")
+    assist.add_submit_buttons("submit", default="submit")
+    result = assist.run_dialog()
+    url = result.input_url
+    browser.goto(url)
 
 def get_orders():
     """Downloads and opens the orders csv from the site"""
